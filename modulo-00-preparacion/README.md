@@ -15,18 +15,9 @@ Verificar que tienes todo lo necesario antes de empezar el workshop.
 ### 1. Acceso a Business Central
 
 - [ ] Tienes acceso a un entorno de Business Central
-- [ ] El entorno es **v25 o superior** (2025 Wave 1+)
+- [ ] El entorno es **v27 o superior**
 - [ ] Tienes permisos de **administrador** o el permission set `MCP - ADMIN`
 
-**Verificar versión**:
-1. Abre Business Central
-2. Click en `?` → "Ayuda y soporte"
-3. Verifica que la versión sea 25.x o superior
-
-```
-✅ Versión correcta: 25.0.xxxxx.xxxxx
-❌ Versión incorrecta: 24.x o anterior
-```
 
 ### 2. Acceso a Copilot Studio
 
