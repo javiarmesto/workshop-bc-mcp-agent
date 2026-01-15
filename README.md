@@ -109,7 +109,7 @@ Todo esto usando **lenguaje natural** y con **datos en vivo** de Business Centra
 - [ ] No se requiere experiencia previa con IA/MCP
 
 ### Entorno Técnico
-- [ ] Business Central v25+ (2025 Wave 1 o superior)
+- [ ] Business Central v27+ (2025 Wave 1 o superior)
 - [ ] Navegador moderno (Edge, Chrome)
 - [ ] Acceso a [copilotstudio.microsoft.com](https://copilotstudio.microsoft.com)
 
