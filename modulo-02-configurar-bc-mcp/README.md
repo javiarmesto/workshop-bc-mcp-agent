@@ -177,22 +177,6 @@ Puedes personalizar los nombres para hacerlos más claros para el agente:
 
 ---
 
-## 🧪 Paso 7: Verificar que Funciona
-
-### Test desde Business Central
-
-1. Busca **"MCP Server Configurations"**
-2. Selecciona tu configuración `CONTOSO-SALES`
-3. En la barra de acciones, busca **"Test Connection"** o similar
-
-### Test desde el Navegador (Avanzado)
-
-El endpoint MCP está en:
-```
-https://api.businesscentral.dynamics.com/v2.0/[tenant]/[environment]/mcp/
-```
-
----
 
 ## 📊 Herramientas Generadas
 
