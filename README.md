@@ -2,7 +2,7 @@
 
 > **Conecta Microsoft Copilot Studio con datos en vivo de Business Central usando Model Context Protocol**
 
-[![Business Central](https://img.shields.io/badge/Business%20Central-v25+-blue)](https://learn.microsoft.com/dynamics365/business-central/)
+[![Business Central](https://img.shields.io/badge/Business%20Central-v27+-blue)](https://learn.microsoft.com/dynamics365/business-central/)
 [![Copilot Studio](https://img.shields.io/badge/Copilot%20Studio-MCP%20GA-green)](https://copilotstudio.microsoft.com)
 [![MCP](https://img.shields.io/badge/MCP-Protocol-purple)](https://modelcontextprotocol.io/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
