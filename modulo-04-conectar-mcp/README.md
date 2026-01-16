@@ -50,16 +50,13 @@ Conectar nuestro agente de Copilot Studio con el MCP Server de Business Central 
 
 ## 🔍 Paso 2: Buscar el MCP Server de Business Central
 
-1. En el diálogo "Add a tool", selecciona el filtro **"Model Context Protocol"**
-2. Busca: **"Dynamics 365 Business Central MCP Server"**
-3. Selecciona el servidor
+1. En el diálogo "Add a tool", busca: **"Dynamics 365 Business Central MCP Server"**
+2. Selecciona el servidor de la lista de resultados
 
 ```
 ┌─────────────────────────────────────────────────────┐
 │  Add a tool                                         │
 ├─────────────────────────────────────────────────────┤
-│  Filter: [Model Context Protocol ▼]                 │
-│                                                     │
 │  🔍 Search: [dynamics 365 business          ]       │
 │                                                     │
 │  Results:                                           │
@@ -74,9 +71,9 @@ Conectar nuestro agente de Copilot Studio con el MCP Server de Business Central 
 ```
 
 > 💡 Si no lo encuentras, verifica:
-> - Que estás en el filtro "Model Context Protocol"
 > - Que tu tenant tiene acceso al BC MCP Server
-> - Que la feature está habilitada en BC
+> - Que la feature está habilitada en BC (Feature Management)
+> - Que tienes licencia de Copilot Studio con créditos disponibles
 
 ---
 
@@ -121,29 +118,31 @@ Una vez conectado, verás:
 
 ## ⚙️ Paso 4: Configurar Inputs del MCP Server
 
-Después de conectar, debes configurar los **Inputs**:
+Después de conectar, debes configurar los **Inputs** en la sección de configuración:
 
-### 4.1 Environment Name
+### 4.1 Environment (Requerido)
 
-| Campo | Valor |
-|-------|-------|
-| **environmentName** | `production` (o el nombre de tu entorno) |
+| Campo | Descripción |
+|-------|-------------|
+| **Environment** | Selector desplegable. Haz clic en la flecha y selecciona tu entorno de BC (ej: `Production`, `Sandbox`) |
 
-> 💡 El nombre del entorno lo encuentras en BC → Ayuda → Solución de problemas
+> 💡 El sistema carga automáticamente los entornos disponibles para tu cuenta
 
-### 4.2 Company ID (Opcional)
+### 4.2 Company (Requerido)
 
-Si tienes múltiples compañías:
-| Campo | Valor |
-|-------|-------|
-| **companyId** | GUID de la compañía o déjalo vacío para default |
+| Campo | Descripción |
+|-------|-------------|
+| **Company** | Selector desplegable. Haz clic en la flecha y selecciona la compañía de BC (ej: `CRONUS España S.A.`) |
 
-### 4.3 MCP Configuration (Opcional)
+> 💡 Las compañías se cargan automáticamente del entorno seleccionado
 
-Si quieres usar una configuración específica:
-| Campo | Valor |
-|-------|-------|
-| **mcpConfiguration** | `CONTOSO-SALES` (o vacío para default) |
+### 4.3 MCP Server Configuration (Opcional)
+
+| Campo | Descripción |
+|-------|-------------|
+| **MCP Server Configuration** | Nombre de la configuración creada en BC. Escribe: `CONTOSO-SALES` (o déjalo vacío para acceso read-only por defecto) |
+
+> ⚠️ **Importante**: Si lo dejas vacío, el agente tendrá acceso de solo lectura a todas las API pages expuestas
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -152,9 +151,9 @@ Si quieres usar una configuración específica:
 │  Connection: [Connected ✅                    ]    │
 │                                                     │
 │  Inputs:                                            │
-│  ├── environmentName*: [production           ]     │
-│  ├── companyId:        [                     ]     │
-│  └── mcpConfiguration: [CONTOSO-SALES        ]     │
+│  ├── Environment*:              [Production ▼]     │
+│  ├── Company*:                  [CRONUS España S.A. ▼] │
+│  └── MCP Server Configuration:  [CONTOSO-SALES]    │
 │                                                     │
 │  [Add and configure]  [Add to agent]               │
 └─────────────────────────────────────────────────────┘
@@ -168,13 +167,17 @@ Si quieres usar una configuración específica:
    - O **"Add to agent"** para añadir con configuración por defecto
 
 2. Si seleccionaste "Add and configure":
-   - Verás la lista de herramientas disponibles
+   - Verás la lista de herramientas disponibles (depende del modo de configuración)
    - Puedes habilitar/deshabilitar herramientas específicas
-   - Puedes editar descripciones
+   - Puedes editar descripciones para mejorar la orquestación
 
 ### Herramientas Disponibles
 
-Con nuestra configuración `CONTOSO-SALES`, verás:
+Las herramientas que verás dependen del **modo** de tu configuración `CONTOSO-SALES`:
+
+#### Si tu configuración NO usa Dynamic Tool Mode (modo estático):
+
+Verás las herramientas específicas para cada API:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -186,8 +189,8 @@ Con nuestra configuración `CONTOSO-SALES`, verás:
 │  [✓] bc_customers_create                           │
 │      Create a new customer                          │
 │                                                     │
-│  [✓] bc_customers_update                           │
-│      Update customer information                    │
+│  [✓] bc_customers_modify                           │
+│      Modify customer information                    │
 │                                                     │
 │  [✓] bc_items_read                                 │
 │      Read item/product information                  │
@@ -205,6 +208,27 @@ Con nuestra configuración `CONTOSO-SALES`, verás:
 │      Read vendor information                        │
 └─────────────────────────────────────────────────────┘
 ```
+
+#### Si tu configuración USA Dynamic Tool Mode:
+
+Solo verás las herramientas de acciones dinámicas:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  Tools from Business Central MCP Server            │
+├─────────────────────────────────────────────────────┤
+│  [✓] bc_actions_search                             │
+│      Search for available BC actions/tools          │
+│                                                     │
+│  [✓] bc_actions_describe                           │
+│      Get detailed description of a BC action        │
+│                                                     │
+│  [✓] bc_actions_invoke                             │
+│      Execute a BC action dynamically                │
+└─────────────────────────────────────────────────────┘
+```
+
+> 💡 **Recomendación**: Para el workshop, usa modo estático (Dynamic Tool Mode = No) para ver claramente las herramientas específicas.
 
 ---
 
@@ -329,9 +353,10 @@ Añade contexto sobre cuándo usar cada herramienta:
 - Verifica que el MCP Server está habilitado en BC
 
 ### "No tools available"
-- Verifica que la configuración MCP tiene tools habilitados
-- Verifica el nombre de la configuración en Inputs
-- Espera unos minutos y refresca
+- Verifica que la configuración MCP está **Active** en BC
+- Verifica el nombre exacto en el campo **MCP Server Configuration**
+- Haz clic en el icono de refresh (🔄) en la lista de herramientas
+- Espera unos minutos para que sincronice
 
 ### "Tool execution failed"
 - Verifica permisos del usuario en BC
@@ -354,8 +379,9 @@ Añade contexto sobre cuándo usar cada herramienta:
 
 - [ ] Encontré el BC MCP Server en Copilot Studio
 - [ ] Creé la conexión con mis credenciales de BC
-- [ ] Configuré el environmentName correctamente
-- [ ] Configuré la mcpConfiguration (CONTOSO-SALES)
+- [ ] Seleccioné el Environment correcto desde el dropdown
+- [ ] Seleccioné la Company correcta desde el dropdown
+- [ ] Configuré MCP Server Configuration (CONTOSO-SALES)
 - [ ] Añadí el MCP Server al agente
 - [ ] Verifiqué las herramientas disponibles
 - [ ] Probé consulta de clientes

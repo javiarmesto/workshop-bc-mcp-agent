@@ -205,7 +205,7 @@ Tool: bc_customers_read
 ```
 
 ### 2. Configuration (Configuración)
-Define qué APIs exponer y qué operaciones permitir.
+Define qué APIs exponer y qué operaciones permitir.Aunque esto luego se puede definir .
 ```
 Configuration: "Contoso Sales Agent"
 ├── customers: read, create
@@ -239,7 +239,7 @@ Connection
 - 🔐 Seguridad centralizada
 
 ### Para el Negocio
-- 💰 Menor costo de desarrollo
+- 💰 Menor coste de desarrollo
 - 📈 Mayor adopción de BC
 - 🚀 Innovación más rápida
 

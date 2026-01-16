@@ -45,7 +45,7 @@ Crearemos una configuración MCP llamada **"Contoso Sales Agent"** con acceso a:
 |-------|-------|-------------|
 | **Code** | `CONTOSO-SALES` | Identificador único |
 | **Description** | `Contoso Sales Agent Configuration` | Descripción legible |
-| **Enabled** | `Yes` | Activa la configuración |
+| **Active** | `Yes` | Activa la configuración |
 | **Dynamic Tool Mode** | `No` | Usaremos modo estático |
 
 ```
@@ -54,7 +54,7 @@ Crearemos una configuración MCP llamada **"Contoso Sales Agent"** con acceso a:
 ├─────────────────────────────────────────────────────┤
 │  Code:           [CONTOSO-SALES              ]      │
 │  Description:    [Contoso Sales Agent Config ]      │
-│  Enabled:        [✓]                                │
+│  Active:         [✓]                                │
 │  Dynamic Mode:   [ ]                                │
 └─────────────────────────────────────────────────────┘
 ```
@@ -71,52 +71,57 @@ Crearemos una configuración MCP llamada **"Contoso Sales Agent"** con acceso a:
 
 ### Opción B: Añadir APIs Manualmente (Recomendado para el workshop)
 
-Click en **"New Line"** en la sección Tools y añade cada API:
+Click en **"New Line"** en la sección Tools y añade cada API.
+> ⚠️ **Importante**: Asegúrate de usar los IDs de la **API v2.0** (rango 30000+), NO las páginas de UI (rango 20-50).
 
 #### Tool 1: Customers
 | Campo | Valor |
 |-------|-------|
-| API Page ID | 30 |
-| API Page Name | (se autocompleta) |
+| API Page ID | 30009 |
+| API Page Name | APIV2 - Customers |
 | Read | ✅ |
 | Create | ✅ |
-| Update | ✅ |
+| Modify | ✅ |
 | Delete | ❌ |
 
 #### Tool 2: Items
 | Campo | Valor |
 |-------|-------|
-| API Page ID | 31 |
+| API Page ID | 30008 |
+| API Page Name | APIV2 - Items |
 | Read | ✅ |
 | Create | ❌ |
-| Update | ❌ |
+| Modify | ❌ |
 | Delete | ❌ |
 
 #### Tool 3: Sales Orders
 | Campo | Valor |
 |-------|-------|
-| API Page ID | 48 |
+| API Page ID | 30049 |
+| API Page Name | APIV2 - Sales Orders |
 | Read | ✅ |
 | Create | ✅ |
-| Update | ❌ |
+| Modify | ❌ |
 | Delete | ❌ |
 
 #### Tool 4: Sales Invoices
 | Campo | Valor |
 |-------|-------|
-| API Page ID | 44 |
+| API Page ID | 30048 |
+| API Page Name | APIV2 - Sales Invoices |
 | Read | ✅ |
 | Create | ❌ |
-| Update | ❌ |
+| Modify | ❌ |
 | Delete | ❌ |
 
 #### Tool 5: Vendors
 | Campo | Valor |
 |-------|-------|
-| API Page ID | 32 |
+| API Page ID | 30010 |
+| API Page Name | APIV2 - Vendors |
 | Read | ✅ |
 | Create | ❌ |
-| Update | ❌ |
+| Modify | ❌ |
 | Delete | ❌ |
 
 ---
@@ -132,47 +137,28 @@ Tu configuración debería verse así:
 │  General                                                        │
 │  ├── Code: CONTOSO-SALES                                        │
 │  ├── Description: Contoso Sales Agent Configuration             │
-│  ├── Enabled: Yes                                               │
+│  ├── Active: Yes                                                │
 │  └── Dynamic Tool Mode: No                                      │
 ├─────────────────────────────────────────────────────────────────┤
 │  Tools                                                          │
-│  ┌────────────────────┬──────┬────────┬────────┬────────┐      │
-│  │ API Page           │ Read │ Create │ Update │ Delete │      │
-│  ├────────────────────┼──────┼────────┼────────┼────────┤      │
-│  │ Customers (30)     │  ✅  │   ✅   │   ✅   │   ❌   │      │
-│  │ Items (31)         │  ✅  │   ❌   │   ❌   │   ❌   │      │
-│  │ Sales Orders (48)  │  ✅  │   ✅   │   ❌   │   ❌   │      │
-│  │ Sales Invoices (44)│  ✅  │   ❌   │   ❌   │   ❌   │      │
-│  │ Vendors (32)       │  ✅  │   ❌   │   ❌   │   ❌   │      │
-│  └────────────────────┴──────┴────────┴────────┴────────┘      │
+│  ┌──────────────────────┬──────┬────────┬────────┬────────┐    │
+│  │ API Page             │ Read │ Create │ Modify │ Delete │    │
+│  ├──────────────────────┼──────┼────────┼────────┼────────┤    │
+│  │ Customers (30009)    │  ✅  │   ✅   │   ✅   │   ❌   │    │
+│  │ Items (30008)        │  ✅  │   ❌   │   ❌   │   ❌   │    │
+│  │ Sales Orders (30049) │  ✅  │   ✅   │   ❌   │   ❌   │    │
+│  │ Sales Invoices (30048│  ✅  │   ❌   │   ❌   │   ❌   │    │
+│  │ Vendors (30010)      │  ✅  │   ❌   │   ❌   │   ❌   │    │
+│  └──────────────────────┴──────┴────────┴────────┴────────┘    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🔤 Paso 5: Personalizar Nombres de Tools (Opcional)
-
-Por defecto, los tools se nombran automáticamente:
-- `bc_customers_read`
-- `bc_customers_create`
-- etc.
-
-Puedes personalizar los nombres para hacerlos más claros para el agente:
-
-| Tool Original | Nombre Personalizado |
-|---------------|---------------------|
-| bc_customers_read | get_customer_info |
-| bc_customers_create | create_new_customer |
-| bc_salesOrders_create | create_sales_order |
-
-> 💡 **Tip**: Nombres descriptivos ayudan al agente a elegir la herramienta correcta.
-
----
-
-## ✅ Paso 6: Guardar y Activar
+## ✅ Paso 5: Guardar y Activar
 
 1. Click en **"Close"** o guarda con Ctrl+S
-2. Verifica que **"Enabled"** está marcado
+2. Verifica que **"Active"** está marcado
 3. La configuración está lista
 
 ---
@@ -248,20 +234,21 @@ Usuario: Juan (Vendedor Región Norte)
 ---
 
 ## ✅ Checklist del Módulo
+Active" está marcado
+- Espera unos minutos (puede tardar en sincronizar)
+- Verifica conectividad de red
 
-- [ ] Creé configuración MCP "CONTOSO-SALES"
-- [ ] Añadí Customers con Read, Create, Update
-- [ ] Añadí Items con Read
-- [ ] Añadí Sales Orders con Read, Create
-- [ ] Añadí Sales Invoices con Read
-- [ ] Añadí Vendors con Read
-- [ ] La configuración está Enabled
-- [ ] Guardé la configuración
+### IDs de API Pages Comunes (v2.0)
 
----
-
-## ➡️ Siguiente Paso
-
-El servidor está configurado. Ahora vamos a crear el agente en Copilot Studio:
+| Entidad | API Page ID |
+|---------|-------------|
+| Customers | 30009 |
+| Items | 30008 |
+| Vendors | 30010 |
+| Sales Orders | 30049 |
+| Sales Invoices | 30048 |
+| Purchase Orders | 30050 |
+| G/L Entries | 30017onfigurado. Ahora vamos a crear el agente en Copilot Studio:
 
 👉 [Módulo 3: Crear el Agente en Copilot Studio](../modulo-03-crear-agente/README.md)
+Active

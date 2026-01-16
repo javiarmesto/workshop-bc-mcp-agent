@@ -42,8 +42,8 @@ Ayudas a usuarios de Contoso a obtener información y realizar tareas en Busines
 - Para crear clientes → usa bc_customers_create
 - Para crear pedidos → usa bc_salesOrders_create
 
-### Actualización (siempre confirmar primero)
-- Para actualizar clientes → usa bc_customers_update
+### Modificación (siempre confirmar primero)
+- Para modificar clientes → usa bc_customers_modify
 
 ## Formato de Respuestas
 
@@ -84,20 +84,24 @@ Usa formato de lista con emojis:
 
 | Campo | Valor |
 |-------|-------|
-| Code | CONTOSO-SALES |
+| Name | CONTOSO-SALES |
 | Description | Contoso Sales Agent Configuration |
-| Enabled | Yes |
+| Active | Yes |
 | Dynamic Tool Mode | No |
 
 ### Tools Configurados
 
-| API Page ID | Nombre | Read | Create | Update | Delete |
-|-------------|--------|------|--------|--------|--------|
-| 30 | Customers | ✅ | ✅ | ✅ | ❌ |
-| 31 | Items | ✅ | ❌ | ❌ | ❌ |
-| 48 | Sales Orders | ✅ | ✅ | ❌ | ❌ |
-| 44 | Sales Invoices | ✅ | ❌ | ❌ | ❌ |
-| 32 | Vendors | ✅ | ❌ | ❌ | ❌ |
+> ⚠️ **Importante**: Usar API Page IDs (APIV2 - 30000+), NO IDs de páginas UI
+
+| API Page ID | Nombre | Allow Read | Allow Create | Allow Modify | Allow Delete |
+|-------------|--------|------------|--------------|--------------|-------------|
+| 30009 | customers | ✅ | ✅ | ✅ | ❌ |
+| 30008 | items | ✅ | ❌ | ❌ | ❌ |
+| 30049 | salesOrders | ✅ | ✅ | ❌ | ❌ |
+| 30047 | salesInvoices | ✅ | ❌ | ❌ | ❌ |
+| 30010 | vendors | ✅ | ❌ | ❌ | ❌ |
+
+> 📋 **Referencia**: Para obtener IDs correctos, filtrar Page Metadata (tabla 2000000138) por Page Type = API y APIVersion = v2.0
 
 ---
 
@@ -105,11 +109,15 @@ Usa formato de lista con emojis:
 
 ### Inputs del MCP Server
 
-| Input | Valor de Ejemplo |
-|-------|------------------|
-| environmentName | production |
-| companyId | (vacío para default) |
-| mcpConfiguration | CONTOSO-SALES |
+> 📋 **Nota**: Estos son campos de tipo dropdown en Copilot Studio
+
+| Input | Tipo | Valor de Ejemplo |
+|-------|------|------------------|
+| Environment | Dropdown | Production |
+| Company | Dropdown | (seleccionar de la lista o dejar vacío para default) |
+| MCP Server Configuration | Text | CONTOSO-SALES |
+
+> ⚠️ **Importante**: Environment y Company son dropdowns que se cargan dinámicamente desde Business Central
 
 ---
 

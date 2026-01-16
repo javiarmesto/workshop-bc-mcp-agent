@@ -60,7 +60,7 @@ En el asistente de creación:
 
 ### 2.3 Instrucciones del Agente
 
-En el campo **"Instructions"**, escribe:
+En el campo **"Instructions"**, escribe (máximo 2,000 caracteres):
 
 ```markdown
 Eres Contoso BC Assistant, un asistente de IA especializado en Business Central.
@@ -110,9 +110,11 @@ En la pestaña **"Overview"**:
 
 | Configuración | Valor Recomendado |
 |---------------|-------------------|
-| **Orchestration** | Generative (Classic) |
-| **Primary model** | GPT-4o o Claude Sonnet 4 |
+| **Orchestration** | Generative |
+| **Primary model** | GPT-4.1 (o GPT-5 preview) |
 | **Allow agent to use its own knowledge** | ✅ Enabled |
+
+> 💡 **Nota sobre modelos**: Desde octubre 2025, GPT-4.1 es el modelo estándar. GPT-5 está disponible en preview para casos avanzados.
 
 ### 3.2 Habilitar Orquestación Generativa
 
@@ -126,7 +128,12 @@ En la pestaña **"Overview"**:
 
 ## 📝 Paso 4: Crear Topics de Conversación (Opcional)
 
-Aunque MCP permite orquestación dinámica, podemos crear topics para casos específicos.
+> 💡 **Nota Importante**: Con Generative Orchestration habilitado (requisito para MCP), el agente puede manejar conversaciones dinámicamente **sin necesidad de topics predefinidos**. Los topics son opcionales y útiles solo para:
+> - Flujos de conversación muy específicos
+> - Mensajes de bienvenida/despedida personalizados
+> - Casos donde necesites control total del flujo
+
+Puedes **saltar este paso** si prefieres que el agente maneje todo dinámicamente, o crear algunos topics básicos:
 
 ### Topic: Bienvenida
 
@@ -218,7 +225,9 @@ Contoso BC Assistant
 ├── Tools (vacío - añadiremos MCP)
 ├── Actions (vacío)
 └── Settings
-    └── Generative AI: Enabled
+    └── Generative AI
+        ├── Generative orchestration: Enabled ✅
+        └── Primary model: GPT-4.1
 ```
 
 ---
@@ -258,9 +267,10 @@ Contoso BC Assistant
 - Intenta en otro entorno
 
 ### "Generative orchestration no disponible"
-- Verifica la configuración del tenant
-- Contacta al administrador de Power Platform
-- Puede requerir licencia específica
+- Verifica que tu licencia de Copilot Studio incluye esta capacidad
+- Contacta al administrador de Power Platform para habilitar la función
+- En algunos entornos, puede requerir configuración específica del tenant
+- Verifica que estás en una región donde está disponible
 
 ### "El agente no responde como esperaba"
 - Revisa las instrucciones

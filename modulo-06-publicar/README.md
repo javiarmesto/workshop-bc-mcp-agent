@@ -53,15 +53,7 @@ Ejecuta estas pruebas:
 ### 2.1 Acceder a Publicación
 
 1. En Copilot Studio, abre tu agente
-2. En la barra superior, click en **"Publish"**
-
-```
-┌─────────────────────────────────────────────────────┐
-│  Contoso BC Assistant                               │
-│                                                     │
-│  [Settings] [Analytics] [◉ Publish ▼]              │
-└─────────────────────────────────────────────────────┘
-```
+2. En el menú de navegación, selecciona **"Publish"**
 
 ### 2.2 Confirmar Publicación
 
@@ -89,19 +81,20 @@ Ejecuta estas pruebas:
 
 ## 💬 Paso 3: Desplegar en Microsoft Teams
 
-### 3.1 Configurar Canal de Teams
+### 3.1 Configurar Canal de Teams y Microsoft 365 Copilot
 
-1. Ve a **"Channels"** en el menú lateral
-2. Selecciona **"Microsoft Teams"**
-3. Click en **"Turn on Teams"**
+1. Ve a **"Channels"** en el menú superior
+2. Selecciona **"Teams and Microsoft 365 Copilot"**
+3. Configura las opciones de disponibilidad
+4. Click en **"Add channel"**
 
 ### 3.2 Opciones de Disponibilidad
 
 | Opción | Descripción |
 |--------|-------------|
-| **Show in Teams catalog** | Visible en la tienda de Teams |
-| **Share link** | Enlace directo para instalar |
-| **Auto-install for org** | Instalar para toda la organización |
+| **Make agent available in Microsoft 365 Copilot** | Disponible en M365 Copilot además de Teams |
+| **Share link** | Enlace directo para compartir con usuarios |
+| **Show to the organization** | Enviar para aprobación del administrador |
 
 ### 3.3 Compartir con Usuarios
 
@@ -111,28 +104,30 @@ Ejecuta estas pruebas:
 
 ```
 Link de instalación:
-https://teams.microsoft.com/l/app/[app-id]?source=btn-link
+(Se obtiene desde Copilot Studio > Channels > Teams and Microsoft 365 Copilot > "Copy link")
 ```
+
+> 📝 **Nota**: Solo usuarios con acceso compartido al agente pueden usar el link de instalación
 
 ---
 
-## 🌐 Paso 4: Desplegar en Microsoft 365 Copilot (Opcional)
+## 🌐 Paso 4: Configurar Disponibilidad en Microsoft 365 Copilot
 
 > ⚠️ Requiere licencia de Microsoft 365 Copilot
+> 📝 **Nota**: El canal de Teams and Microsoft 365 Copilot es unificado
 
-### 4.1 Habilitar Canal
+### 4.1 Verificar Disponibilidad
 
-1. Ve a **"Channels"** 
-2. Selecciona **"Microsoft 365 Copilot"**
-3. Marca **"Make agent available in Microsoft 365 Copilot"**
-4. Click **"Add channel"**
+Si marcaste **"Make agent available in Microsoft 365 Copilot"** al configurar el canal, el agente ya está disponible en M365 Copilot.
 
 ### 4.2 Uso en M365 Copilot
 
 Una vez desplegado, los usuarios pueden:
 1. Abrir Microsoft 365 Copilot Chat
-2. Encontrar el agente en la sección "Agents"
+2. Escribir **@** y seleccionar el agente
 3. Interactuar directamente desde Copilot
+
+> ⚠️ **Importante**: El agente requiere aprobación del administrador en Microsoft 365 admin center antes de estar disponible para toda la organización
 
 ---
 
@@ -145,13 +140,19 @@ Una vez desplegado, los usuarios pueden:
 
 ### 5.2 Código de Integración
 
+El código completo incluye el token endpoint:
+
 ```html
 <!-- Copilot Studio Web Widget -->
+<!-- Debes obtener el token endpoint desde Copilot Studio -->
+<!-- Ver: https://learn.microsoft.com/microsoft-copilot-studio/customize-default-canvas#retrieve-the-token-endpoint-for-your-agent -->
 <iframe 
   src="https://web.powerva.microsoft.com/environments/[env]/bots/[bot]/webchat"
   style="width: 100%; height: 500px; border: none;">
 </iframe>
 ```
+
+> 📝 **Nota**: Para seguridad en producción, se recomienda configurar autenticación y usar el token endpoint
 
 ### 5.3 Personalización
 
@@ -172,17 +173,20 @@ Puedes personalizar:
 
 | Opción | Descripción |
 |--------|-------------|
-| **No authentication** | Cualquiera puede usar (no recomendado para BC) |
-| **Only for Teams** | Solo usuarios de Teams autenticados |
-| **Azure AD** | Requiere login con cuenta corporativa |
+| **Authenticate with Microsoft** | Autenticación automática con Microsoft Entra ID (por defecto para Teams y M365) |
+| **Authenticate manually** | Configuración manual de autenticación (para otros canales) |
+| **No authentication** | Cualquiera puede usar (⚠️ NO recomendado para BC) |
 
 ### Recomendación para Business Central
 
 ```
-✅ Usar autenticación Azure AD
+✅ Usar "Authenticate with Microsoft"
+✅ Autenticación automática con Microsoft Entra ID
 ✅ Mismo tenant que Business Central
-✅ El usuario debe tener licencia de BC
+✅ El usuario hereda permisos de BC vía OAuth 2.0
 ```
+
+> ⚠️ **Importante**: Si seleccionas "No authentication", el agente no puede usar herramientas MCP que requieren credenciales de usuario
 
 ---
 
@@ -195,10 +199,12 @@ Puedes personalizar:
 
 | Métrica | Descripción |
 |---------|-------------|
-| **Sessions** | Número de conversaciones |
-| **Engagement** | Interacción de usuarios |
-| **Resolution rate** | % de consultas resueltas |
-| **Escalation rate** | % escalado a humano |
+| **Total Sessions** | Número total de sesiones de analytics |
+| **Engagement Rate** | % de sesiones donde se activó un topic personalizado |
+| **Resolution Rate** | % de sesiones engaged que se resolvieron |
+| **Escalation Rate** | % de sesiones engaged que se escalaron |
+| **Abandon Rate** | % de sesiones engaged que se abandonaron |
+| **CSAT** | Puntuación promedio de satisfacción del cliente |
 
 ### Métricas Clave a Monitorear
 

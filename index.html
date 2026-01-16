@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop BC MCP Agent - Construye un Agente de IA con Business Central</title>
+  <meta name="description" content="Workshop paso a paso para construir un agente de IA conversacional conectado a Business Central usando Model Context Protocol (MCP)">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+      --theme-color: #0078d4;
+      --sidebar-width: 300px;
+    }
+    .sidebar {
+      border-right: 1px solid #eee;
+    }
+    .sidebar-nav > ul > li > a {
+      font-weight: 600;
+    }
+    .app-name-link img {
+      width: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">🤖 Cargando Workshop BC MCP Agent...</div>
+  <script>
+    window.$docsify = {
+      name: '🤖 Workshop BC MCP Agent',
+      repo: 'javiarmesto/workshop-bc-mcp-agent',
+      loadSidebar: true,
+      auto2top: true,
+      subMaxLevel: 3,
+      maxLevel: 4,
+      homepage: 'README.md',
+      
+      // Búsqueda
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '🔍 Buscar...',
+        noData: 'No encontrado',
+        depth: 4,
+        hideOtherSidebarContent: false
+      },
+      
+      // Paginación
+      pagination: {
+        previousText: '← Anterior',
+        nextText: 'Siguiente →',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+      
+      // Tema
+      themeColor: '#0078d4',
+      
+      // Copy code
+      copyCode: {
+        buttonText: '📋 Copiar',
+        errorText: '❌ Error',
+        successText: '✅ Copiado!'
+      },
+      
+      // Tabs
+      tabs: {
+        persist: true,
+        sync: true,
+        theme: 'classic',
+        tabComments: true,
+        tabHeadings: true
+      },
+      
+      // Footer
+      formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
+      
+      // Otros
+      executeScript: true,
+      mergeNavbar: true,
+      notFoundPage: true,
+      relativePath: false,
+      topMargin: 90,
+      
+      // Alias para navegación
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+      },
+      
+      // Plugins
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function (html) {
+            // Agregar timestamp
+            var footer = [
+              '<hr/>',
+              '<footer style="text-align: center; margin-top: 3em; color: #999; font-size: 0.9em;">',
+              '<p>Workshop BC MCP Agent - <a href="https://github.com/javiarmesto/workshop-bc-mcp-agent" target="_blank">GitHub</a></p>',
+              '<p>Licencia MIT • Hecho con ❤️ para la comunidad Business Central</p>',
+              '</footer>'
+            ].join('');
+            return html + footer;
+          });
+        }
+      ]
+    }
+  </script>
+  
+  <!-- Docsify core -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+  
+  <!-- Búsqueda -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  
+  <!-- Copy code -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+  
+  <!-- Paginación -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+  
+  <!-- Tabs -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  
+  <!-- Zoom images -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  
+  <!-- Emoji -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  
+  <!-- Resaltado de código -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
+  
+  <!-- Google Analytics (opcional - reemplaza con tu ID) -->
+  <!--
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  -->
+</body>
+</html>

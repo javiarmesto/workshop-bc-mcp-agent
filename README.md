@@ -30,7 +30,7 @@ Un agente llamado **"Contoso BC Assistant"** que puede:
 | 🧾 **Revisar pedidos** | "¿Cuántos pedidos pendientes hay hoy?" |
 | 💰 **Analizar facturas** | "Lista las facturas vencidas de más de 30 días" |
 | ✏️ **Crear registros** | "Crea un nuevo cliente llamado Fabrikam" |
-| 🔄 **Actualizar datos** | "Actualiza el límite de crédito del cliente 20000" |
+| 🔄 **Modificar datos** | "Modifica el límite de crédito del cliente 20000" |
 
 Todo esto usando **lenguaje natural** y con **datos en vivo** de Business Central.
 
@@ -99,9 +99,10 @@ Todo esto usando **lenguaje natural** y con **datos en vivo** de Business Centra
 
 ### Licencias y Acceso
 - [ ] Licencia de Business Central (Essential o Premium)
-- [ ] Licencia de Copilot Studio con créditos disponibles
-- [ ] Acceso de administrador al entorno de BC
-- [ ] Cuenta Microsoft 365 válida
+- [ ] Licencia de Copilot Studio con capacidad disponible
+- [ ] Acceso de administrador al entorno de BC (para configurar MCP Server)
+- [ ] Cuenta Microsoft 365 en el mismo tenant que Business Central
+- [ ] (Opcional) Licencia Microsoft 365 Copilot para usuarios finales si se despliega en ese canal
 
 ### Conocimientos Previos
 - [ ] Familiaridad básica con Business Central
@@ -109,8 +110,9 @@ Todo esto usando **lenguaje natural** y con **datos en vivo** de Business Centra
 - [ ] No se requiere experiencia previa con IA/MCP
 
 ### Entorno Técnico
-- [ ] Business Central v27+ (2025 Wave 1 o superior)
-- [ ] Navegador moderno (Edge, Chrome)
+- [ ] Business Central versión 27 (2025 release wave 2) o superior
+- [ ] Feature Management: "Feature: Enable MCP Server access" activado en BC
+- [ ] Navegador moderno (Microsoft Edge o Chrome)
 - [ ] Acceso a [copilotstudio.microsoft.com](https://copilotstudio.microsoft.com)
 
 ---
@@ -208,9 +210,12 @@ El agente ayuda al equipo financiero a:
 
 ## ⚠️ Notas Importantes
 
-> **Preview Feature**: El Business Central MCP Server está actualmente en Preview. Las funcionalidades pueden cambiar antes de GA.
+> **Preview Feature**: El Business Central MCP Server está en Public Preview (disponible desde octubre 2025). Las funcionalidades pueden cambiar antes de General Availability.
 
-> **Licencias**: Asegúrate de tener las licencias adecuadas. El uso de MCP desde agentes externos puede tener costos adicionales de Copilot Credits.
+> **Licencias**: Asegúrate de tener las licencias adecuadas:
+> - Business Central (Essential o Premium)
+> - Copilot Studio con capacidad/créditos disponibles
+> - Para usar el agente en Microsoft 365 Copilot, los usuarios necesitan licencia de Microsoft 365 Copilot
 
 > **Seguridad**: El agente actúa con los permisos del usuario conectado. Configura roles adecuados en BC.
 
@@ -226,7 +231,7 @@ Este workshop está bajo licencia MIT. Puedes usarlo, modificarlo y distribuirlo
 
 - **Microsoft**: Por el framework MCP y Copilot Studio
 - **Comunidad BC**: Por feedback y casos de uso
-- **VS Sistemas**: Por la adaptación y documentación
+
 
 ---
 
