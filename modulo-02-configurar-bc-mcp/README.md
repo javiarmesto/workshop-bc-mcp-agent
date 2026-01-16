@@ -97,7 +97,7 @@ Click en **"New Line"** en la sección Tools y añade cada API.
 #### Tool 3: Sales Orders
 | Campo | Valor |
 |-------|-------|
-| API Page ID | 30049 |
+| API Page ID | 30028 |
 | API Page Name | APIV2 - Sales Orders |
 | Read | ✅ |
 | Create | ✅ |
@@ -107,7 +107,7 @@ Click en **"New Line"** en la sección Tools y añade cada API.
 #### Tool 4: Sales Invoices
 | Campo | Valor |
 |-------|-------|
-| API Page ID | 30048 |
+| API Page ID | 30012 |
 | API Page Name | APIV2 - Sales Invoices |
 | Read | ✅ |
 | Create | ❌ |
